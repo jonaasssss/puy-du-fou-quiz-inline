@@ -1,0 +1,183 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Puy du Fou Personality Quiz</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      background-image: url('img/bg_quiz.png');
+      background-size: contain;
+      background-position: top center;
+      background-repeat: no-repeat;
+      background-color: #fef8f0;
+      background-attachment: fixed;
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #quiz-container, #result-container {
+      max-width: 600px;
+      padding: 30px;
+      background-color: rgba(255, 255, 255, 0.95);
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      text-align: center;
+    }
+
+    .option-btn {
+      font-size: 1.2em;
+      margin: 20px;
+      padding: 15px 30px;
+      background-color: #a40628;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .option-btn:hover {
+      background-color: #85051f;
+    }
+
+    #result-container {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    #result-img {
+      width: 200px;
+      border-radius: 16px;
+      margin-top: 20px;
+    }
+
+    #result-desc {
+      margin-top: 15px;
+      font-size: 1em;
+    }
+  </style>
+</head>
+<body>
+  <div id="quiz-container">
+    <h1>Puy du Fou Personality Quiz</h1>
+    <div id="question-box">
+      <p id="question-text">Loading question...</p>
+      <div class="button-group">
+        <button id="optionA" class="option-btn" onclick="choose('A')">Option A</button>
+        <button id="optionB" class="option-btn" onclick="choose('B')">Option B</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="result-container">
+    <h2 id="result-title"></h2>
+    <img id="result-img" src="" alt="Character Image" />
+    <p id="result-desc"></p>
+  </div>
+
+  
+  <script>
+    const questions = [
+      {
+        text: "What do you enjoy more?",
+        options: ["Playing games and doing things with friends", "Quietly drawing or reading alone"],
+        scores: ["actress", "eagle"]
+      },
+      {
+        text: "Which sounds more like you?",
+        options: ["Brave and bold", "Kind and helpful"],
+        scores: ["joan_of_arc", "roman"]
+      },
+      {
+        text: "You'd rather be...",
+        options: ["Adventuring outside", "Inventing quietly indoors"],
+        scores: ["viking", "musketeer"]
+      },
+      {
+        text: "You prefer to...",
+        options: ["Work with others", "Work alone"],
+        scores: ["actress", "eagle"]
+      },
+      {
+        text: "If someone’s in trouble, you...",
+        options: ["Jump in to help", "Think before acting"],
+        scores: ["joan_of_arc", "roman"]
+      }
+    ];
+
+    let currentQuestion = 0;
+    const scores = {};
+
+    function choose(option) {
+      const role = questions[currentQuestion].scores[option === 'A' ? 0 : 1];
+      scores[role] = (scores[role] || 0) + 1;
+
+      currentQuestion++;
+      if (currentQuestion < questions.length) {
+        showQuestion();
+      } else {
+        showResult();
+      }
+    }
+
+    function showQuestion() {
+      const q = questions[currentQuestion];
+      document.getElementById("question-text").innerText = `${currentQuestion + 1}. ${q.text}`;
+      document.getElementById("optionA").innerText = q.options[0];
+      document.getElementById("optionB").innerText = q.options[1];
+    }
+
+    function showResult() {
+      document.getElementById("quiz-container").style.display = "none";
+      document.getElementById("result-container").style.display = "flex";
+
+      const topRole = Object.entries(scores).sort((a, b) => b[1] - a[1])[0][0];
+
+      const descriptions = {
+        "joan_of_arc": {
+          title: "Joan of Arc",
+          desc: "You are brave and determined, always stepping forward at the right moment. Like Joan of Arc, you're a natural leader!",
+        },
+        "actress": {
+          title: "Actress",
+          desc: "You love performing and making others smile. Just like a star on stage!",
+        },
+        "viking": {
+          title: "Viking",
+          desc: "Bold and adventurous, you face challenges with courage and curiosity.",
+        },
+        "eagle": {
+          title: "Eagle",
+          desc: "You are thoughtful and observant, soaring above with sharp vision and quiet strength.",
+        },
+        "roman": {
+          title: "Roman",
+          desc: "Disciplined and loyal, you thrive in structure and honor your commitments.",
+        },
+        "musketeer": {
+          title: "Musketeer",
+          desc: "You have flair and loyalty, always ready to stand by your friends with style.",
+        }
+      };
+
+      const result = descriptions[topRole] || {};
+      document.getElementById("result-title").innerText = result.title || "Unknown";
+      document.getElementById("result-img").src = `img/${topRole}.png`;
+      document.getElementById("result-desc").innerText = result.desc || "";
+    }
+
+    // Initialize first question
+    showQuestion();
+  </script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Your Puy du Fou Character</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="result-container">
+    <h1>Your Character Match</h1>
+    <img id="result-img" src="" alt="Character Image" />
+    <h2 id="result-name">Loading...</h2>
+    <p id="result-desc">Finding your match...</p>
+  </div>
+
+  <script>
+    const roleDescriptions = {
+      "Joan of Arc": "You are brave and determined, always stepping forward at the right moment. You care about justice and are willing to fight for the happiness of others. Like Joan of Arc, you're a natural leader!",
+      "Actress": "You love performing and being creative, always making life more fun with your imagination. You enjoy making others smile and being in the spotlight — just like a star on stage!",
+      "Viking": "You're a fearless little adventurer who loves challenges and exploring the unknown. You’re full of courage and enjoy roaming the world with friends. Like a Viking, freedom is in your soul!",
+      "Eagle": "You're quiet, smart, and observant, enjoying time alone to think and dream. You have your own path and soar high like an eagle in the sky.",
+      "Roman": "You respect rules and take responsibility, preferring to keep things organized and in order. You're reliable in a team — brave and disciplined like a Roman warrior!",
+      "Musketeer": "You're fun and full of energy, always ready for an adventure with friends! Loyal and friendly, you're like a Musketeer — a cheerful hero who fights for friendship!"
+    };
+
+    window.onload = () => {
+      const scores = JSON.parse(localStorage.getItem('scores'));
+      let topScore = 0;
+      let topRole = "Joan of Arc";
+
+      for (const role in scores) {
+        if (scores[role] > topScore) {
+          topScore = scores[role];
+          topRole = role;
+        }
+      }
+
+      document.getElementById("result-name").innerText = topRole;
+      document.getElementById("result-desc").innerText = roleDescriptions[topRole];
+      document.getElementById("result-img").src = `img/${topRole.toLowerCase().replaceAll(" ", "_")}.png`;
+    };
+  </script>
+</body>
+</html>

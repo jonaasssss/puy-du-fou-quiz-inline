@@ -1,0 +1,72 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Take the Test</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      background-image: url('img/bg_intro.png');
+      background-size: contain;
+      background-position: top center;
+      background-repeat: no-repeat;
+      background-color: #fef8f0;
+      font-family: 'Arial', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+    }
+
+    .test-btn {
+      margin-bottom: 60px;
+      padding: 15px 30px;
+      font-size: 18px;
+      background-color: #a40628;
+      color: white;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      z-index: 10;
+    }
+
+    .test-btn:hover {
+      background-color: #85051f;
+    }
+
+    .overlay-text {
+      position: absolute;
+      top: 18%;
+      width: 80%;
+      text-align: center;
+      color: #a40628;
+      font-size: 1.6em;
+      font-weight: bold;
+      text-shadow: 1px 1px 3px white;
+    }
+
+    .overlay-subtext {
+      position: absolute;
+      top: 32%;
+      width: 80%;
+      text-align: center;
+      color: #222;
+      font-size: 1em;
+      text-shadow: 0 0 3px white;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="overlay-text">“Our story-shapes clicked! Puy’s whispering woods hum your true name!”</div>
+  <div class="overlay-subtext">
+    Zip-zap! Two ticks to snag your Puy spark—dragon-snort tracker? Owl-riddle solver?<br>
+    Hurry-hum! The tale-clock squeaks stardust at giggles o’clock!
+  </div>
+
+  <button class="test-btn" onclick="window.location.href='quiz.html'">Take The Test</button>
+</body>
+</html>

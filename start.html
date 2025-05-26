@@ -1,0 +1,45 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Welcome to Puy du Fou Quiz</title>
+  <style>
+    body {
+      background-image: url('img/bg_start.png');
+      background-size: contain;
+      background-position: top center;
+      background-repeat: no-repeat;
+      background-color: #fef8f0;
+      background-attachment: fixed;
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      align-items: center;
+    }
+
+    .continue-btn {
+      margin-bottom: 60px;
+      padding: 15px 30px;
+      font-size: 18px;
+      background-color: #a40628;
+      color: white;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+    }
+
+    .continue-btn:hover {
+      background-color: #85051f;
+    }
+  </style>
+</head>
+<body>
+  <button class="continue-btn" onclick="window.location.href='intro.html'">Continue</button>
+</body>
+</html>
